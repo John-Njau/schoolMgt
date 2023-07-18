@@ -16,9 +16,9 @@ public class Lecturer {
     private String name;
     private String email;
     private String phoneNumber;
-
     private String profileImage;
-    @OneToOne(mappedBy = "lecturer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToOne
+    @JoinColumn(name = "unit_id", referencedColumnName = "id", nullable = false)
     private Unit unit;
 
     public Lecturer() {
@@ -45,6 +45,7 @@ public class Lecturer {
     public void setName(String name) {
         this.name = name;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -62,15 +63,17 @@ public class Lecturer {
     }
 
 //    getters show the data being returned on the endpoint JSON
-//    public Long getId() {
-//        return id;
-//    }
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
     public String getEmail() {
         return email;
     }
+
     public Unit getSubject() {
         return unit;
     }

@@ -1,28 +1,31 @@
 package com.school.management.Unit;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/subjects")
+@RequestMapping("/units")
 public class UnitController {
 
-    @GetMapping("/all/")
-    public List<Unit> allSubjects() {
-        return List.of(new Unit());
+    private final UnitService unitService;
+
+    public UnitController(UnitService unitService) {
+        this.unitService = unitService;
     }
 
-    @GetMapping("/{subjectId}")
-    public List<Unit> getSubject() {
-        return List.of(new Unit());
+    @GetMapping("/all")
+    public List<Unit> allUnits() {
+        return unitService.getUnits();
+    }
+
+    @GetMapping("/{unitId}")
+    Unit getUnit(@PathVariable Long unitId) {
+        return unitService.getUnit(unitId);
     }
 
     @PostMapping("/add")
-    public  List<Unit> addSubject() {
-        return List.of(new Unit());
+    Unit addUnit(@RequestBody Unit unit) {
+        return unitService.addUnit(unit);
     }
 }

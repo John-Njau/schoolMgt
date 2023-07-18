@@ -8,8 +8,8 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String name;
-
 //    link department to faculty
     @ManyToOne
     @JoinColumn(name = "faculty_id", referencedColumnName = "id", nullable = false)
@@ -54,5 +54,4 @@ public class Department {
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
-
 }

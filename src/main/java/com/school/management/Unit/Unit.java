@@ -1,5 +1,6 @@
 package com.school.management.Unit;
 
+import com.school.management.Course.Course;
 import com.school.management.Lecturer.Lecturer;
 import com.school.management.Student.Student;
 import jakarta.persistence.*;
@@ -15,14 +16,44 @@ public class Unit {
     private Long id;
     private String name;
     private String description;
+    private Integer yearOfStudy;
+    private String unitCode;
     @OneToOne
     @JoinColumn(name = "lecturer_id", referencedColumnName = "id")
     private Lecturer lecturer;
+    @ManyToOne
+    @JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false)
+    private Course course;
     @ManyToMany(mappedBy = "units", cascade = CascadeType.ALL)
     private List<Student> students;
 
+    //        default constructor
     public Unit() {
     }
+
+    //    constructor with all fields
+    public Unit(Long id, String name, String description, Integer yearOfStudy, Lecturer lecturer, Course course, List<Student> students, String unitCode) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.yearOfStudy = yearOfStudy;
+        this.lecturer = lecturer;
+        this.course = course;
+        this.students = students;
+        this.unitCode = unitCode;
+    }
+
+    //    constructor without id
+    public Unit(String name, String description, Integer yearOfStudy, Lecturer lecturer, Course course, List<Student> students, String unitCode) {
+        this.name = name;
+        this.description = description;
+        this.yearOfStudy = yearOfStudy;
+        this.lecturer = lecturer;
+        this.course = course;
+        this.students = students;
+        this.unitCode = unitCode;
+    }
+
 
     public Long getId() {
         return id;
@@ -48,6 +79,30 @@ public class Unit {
         this.description = description;
     }
 
+    public Lecturer getLecturer() {
+        return lecturer;
+    }
+
+    public Integer getYearOfStudy() {
+        return yearOfStudy;
+    }
+
+    public void setYearOfStudy(Integer yearOfStudy) {
+        this.yearOfStudy = yearOfStudy;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public List<Student> getStudents() {
         return students;
     }
@@ -56,8 +111,11 @@ public class Unit {
         this.students = students;
     }
 
-    public Lecturer getLecturer() {
-        return lecturer;
+    public String getUnitCode() {
+        return unitCode;
     }
 
+    public void setUnitCode(String unitCode) {
+        this.unitCode = unitCode;
+    }
 }
