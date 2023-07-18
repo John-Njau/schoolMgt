@@ -12,6 +12,7 @@ public class Faculty {
     private Long id;
     private String name;
 
+
     public Faculty() {
     }
 
