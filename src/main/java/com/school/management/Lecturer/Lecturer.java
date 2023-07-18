@@ -5,6 +5,8 @@ package com.school.management.Lecturer;
 import com.school.management.Unit.Unit;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table
 public class Lecturer {
@@ -17,26 +19,26 @@ public class Lecturer {
     private String email;
     private String phoneNumber;
     private String profileImage;
-    @ManyToOne
-    @JoinColumn(name = "unit_id", referencedColumnName = "id", nullable = false)
-    private Unit unit;
+    @OneToMany
+    @JoinColumn(name = "unit_id", referencedColumnName = "id")
+    private List<Unit> units;
 
     public Lecturer() {
     }
 
-    public Lecturer(Long id, String name, String email, Unit unit, String phoneNumber, String profileImage) {
+    public Lecturer(Long id, String name, String email, List<Unit> units, String phoneNumber, String profileImage) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.unit = unit;
+        this.units = units;
         this.phoneNumber = phoneNumber;
         this.profileImage = profileImage;
     }
 
-    public Lecturer(String name, String email, Unit unit, String phoneNumber, String profileImage) {
+    public Lecturer(String name, String email, List<Unit> units, String phoneNumber, String profileImage) {
         this.name = name;
         this.email = email;
-        this.unit = unit;
+        this.units = units;
         this.phoneNumber = phoneNumber;
         this.profileImage = profileImage;
     }
@@ -50,8 +52,8 @@ public class Lecturer {
         this.email = email;
     }
 
-    public void setSubject(Unit unit) {
-        this.unit = unit;
+    public void setSubject(List<Unit> units) {
+        this.units = units;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -74,15 +76,23 @@ public class Lecturer {
         return email;
     }
 
-    public Unit getSubject() {
-        return unit;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     public String getProfileImage() {
         return profileImage;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Unit> getUnits() {
+        return units;
+    }
+
+    public void setUnits(List<Unit> units) {
+        this.units = units;
     }
 }

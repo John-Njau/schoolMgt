@@ -30,7 +30,7 @@ public class Student {
     private Integer age;
 
     @ManyToMany
-    @JoinColumn(name = "subject_id", referencedColumnName = "id")
+    @JoinColumn(name = "unit_id", referencedColumnName = "id")
     private List<Unit> units = new ArrayList<>();
 
     public Student() { }
