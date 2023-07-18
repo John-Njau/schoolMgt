@@ -2,9 +2,8 @@ package com.school.management.Lecturer;
 
 //import com.school.management.Student.Student;
 
-import com.school.management.Subject.Subject;
+import com.school.management.Unit.Unit;
 import jakarta.persistence.*;
-import java.util.List;
 
 @Entity
 @Table
@@ -16,28 +15,33 @@ public class Lecturer {
     private Long id;
     private String name;
     private String email;
+    private String phoneNumber;
 
+    private String profileImage;
     @OneToOne(mappedBy = "lecturer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Subject subject;
+    private Unit unit;
 
     public Lecturer() {
     }
 
-    public Lecturer(Long id, String name, String email, Subject subject) {
+    public Lecturer(Long id, String name, String email, Unit unit, String phoneNumber, String profileImage) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.subject = subject;
+        this.unit = unit;
+        this.phoneNumber = phoneNumber;
+        this.profileImage = profileImage;
     }
 
-    public Lecturer(String name, String email, Subject subject) {
+    public Lecturer(String name, String email, Unit unit, String phoneNumber, String profileImage) {
         this.name = name;
         this.email = email;
-        this.subject = subject;
+        this.unit = unit;
+        this.phoneNumber = phoneNumber;
+        this.profileImage = profileImage;
     }
 
-//    Setters
-//    setters are used to set the data on the endpoint JSON
+//    Setters are used to set the data on the endpoint JSON
     public void setName(String name) {
         this.name = name;
     }
@@ -45,22 +49,37 @@ public class Lecturer {
         this.email = email;
     }
 
-    public void setSubject(Subject subject) {
-        this.subject = subject;
+    public void setSubject(Unit unit) {
+        this.unit = unit;
     }
 
-//    Getters
-//    getters show the data being returned on the endpoint JSON
-    public Long getId() {
-        return id;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
+//    getters show the data being returned on the endpoint JSON
+//    public Long getId() {
+//        return id;
+//    }
     public String getName() {
         return name;
     }
     public String getEmail() {
         return email;
     }
-    public Subject getSubject() {
-        return subject;
+    public Unit getSubject() {
+        return unit;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
     }
 }

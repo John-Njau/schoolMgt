@@ -1,6 +1,6 @@
 package com.school.management.Student;
 
-import com.school.management.Subject.Subject;
+import com.school.management.Unit.Unit;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +44,6 @@ public class StudentController {
     ResponseEntity<Student> updateStudent(@PathVariable Long studentId, @RequestBody Student student) {
         studentService.updateStudent(studentId, student);
         student.setId(studentId); // Set the ID in the updated student object
-//        return ResponseEntity.ok("Student with id " + studentId + " has been updated");
         return ResponseEntity.ok().body(student);
     }
 
@@ -58,7 +57,7 @@ public class StudentController {
 
     //    Get a list of all subjects for a student
     @GetMapping("/students/{studentId}/subjects")
-    ResponseEntity<List<Subject>> getStudentSubjects(@PathVariable Long studentId) {
+    ResponseEntity<List<Unit>> getStudentSubjects(@PathVariable Long studentId) {
         return new ResponseEntity<>(studentService.studentSubjects(studentId), HttpStatus.OK);
     }
 }

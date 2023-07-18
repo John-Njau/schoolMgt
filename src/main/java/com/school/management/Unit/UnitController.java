@@ -1,4 +1,4 @@
-package com.school.management.Subject;
+package com.school.management.Unit;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,20 +9,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/subjects")
-public class SubjectController {
+public class UnitController {
 
     @GetMapping("/all/")
-    public List<Subject> allSubjects() {
-        return List.of(new Subject());
+    public List<Unit> allSubjects() {
+        return List.of(new Unit());
     }
 
     @GetMapping("/{subjectId}")
-    public List<Subject> getSubject() {
-        return List.of(new Subject());
+    public List<Unit> getSubject() {
+        return List.of(new Unit());
     }
 
     @PostMapping("/add")
-    public  List<Subject> addSubject() {
-        return List.of(new Subject());
+    public  List<Unit> addSubject() {
+        return List.of(new Unit());
     }
 }

@@ -1,7 +1,7 @@
 package com.school.management.Student;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.school.management.Subject.Subject;
+import com.school.management.Unit.Unit;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,7 +32,7 @@ public class Student {
 
     @ManyToMany
     @JoinColumn(name = "subject_id", referencedColumnName = "id")
-    private List<Subject> subjects = new ArrayList<>();
+    private List<Unit> units = new ArrayList<>();
 
     public Student() { }
 
@@ -58,6 +58,7 @@ public class Student {
     public void setId(Long id) {
         this.id = id;
     }
+
     public Long getId() {
         return id;
     }
@@ -98,13 +99,13 @@ public class Student {
         return dob;
     }
 
-    public List<Subject> getSubjects() {
-        return subjects;
+    public List<Unit> getSubjects() {
+        return units;
     }
 
 
-    public void setSubjects(List<Subject> subjects) {
-        this.subjects = subjects;
+    public void setSubjects(List<Unit> units) {
+        this.units = units;
     }
 
     public String getRegistrationNumber() {

@@ -1,6 +1,6 @@
 package com.school.management.Student;
 
-import com.school.management.Subject.Subject;
+import com.school.management.Unit.Unit;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,7 +81,7 @@ public class StudentService {
     }
 
 //    TODO: Add a method to get a list of all subjects for a student - DONE
-    public List<Subject> studentSubjects(Long studentId) {
+    public List<Unit> studentSubjects(Long studentId) {
         Student existingStudent = studentRepository.findById(studentId)
                 .orElseThrow(() -> new IllegalStateException("Student with id " + studentId + " does not exist"));
         return existingStudent.getSubjects();
